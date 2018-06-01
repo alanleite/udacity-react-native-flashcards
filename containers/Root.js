@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import { StatusBar, Container } from '../components'
 import RootTab from './RootTab'
 
 export default () => (
-  <View>
-    <View style={{ height: 20 }} />
+  <Container>
+    <StatusBar/>
     <RootTab />
-    <Text>Teste!</Text>
-  </View>
+  </Container>
 )

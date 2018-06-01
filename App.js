@@ -12,7 +12,7 @@ export default class App extends React.Component {
   render () {
     return (
       <Provider store={store} >
-        <ThemeProvider theme={theme.light}>
+        <ThemeProvider theme={theme}>
           <Root />
         </ThemeProvider>
       </Provider>
