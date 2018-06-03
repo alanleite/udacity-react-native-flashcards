@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components/native'
 import theme from './common/theme'
 import reducers from './common/reducers'
 import Root from './containers/Root'
+import { registerNotification } from './common/helpers'
 
 const store = createStore(
   reducers,
@@ -13,6 +14,9 @@ const store = createStore(
 )
 
 export default class App extends React.Component {
+  componentDidMount () {
+    registerNotification()
+  }
   render () {
     return (
       <Provider store={store} >
