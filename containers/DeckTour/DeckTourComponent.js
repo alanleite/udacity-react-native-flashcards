@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import styled from 'styled-components/native'
 import { Button } from '../../components'
 import Tour from './Tour'
+import TourCompleted from './TourCompleted'
 
 const DeckDetails = styled.View`
     flex: 1
@@ -19,18 +20,15 @@ const DeckSubTitle = styled.Text`
     font-size: 18px;
 `
 
-const ScoreTitle = styled.Text`
-    font-size: 22px;
-    color: ${props => props.theme.accent};
-`
-
 export default (props) => {
   const {
     index,
     testing,
     showingAnswer,
+    lastQuestion,
     deck,
     onStartTest,
+    onClear,
     onCreateQuestion,
     onShowAnswer,
     onCorrect,
@@ -47,7 +45,6 @@ export default (props) => {
     return (
       <DeckDetails>
         <DeckTitle>{title}</DeckTitle>
-        <ScoreTitle>{getScoreText()}</ScoreTitle>
         <DeckSubTitle>
           { questions.length === 1 && `There is a test waiting for you` }
           { questions.length > 1 && `There are ${questions.length} tests waiting for you` }
@@ -59,7 +56,7 @@ export default (props) => {
         </View>
       </DeckDetails>
     )
-  } else {
+  } else if (!lastQuestion) {
     return (
       <Tour
         question={questions[index]}
@@ -67,6 +64,15 @@ export default (props) => {
         onShowAnswer={onShowAnswer}
         onCorrect={onCorrect}
         onIncorrect={onIncorrect}
+        countText={`${index + 1} of ${questions.length}`}
+      />
+    )
+  } else {
+    return (
+      <TourCompleted
+        getScoreText={getScoreText}
+        onStartTest={onStartTest}
+        onClear={onClear}
       />
     )
   }

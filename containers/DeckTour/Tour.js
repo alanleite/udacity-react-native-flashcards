@@ -22,8 +22,14 @@ const DeckSubTitle = styled.Text`
     text-align: center;
 `
 
-export default ({ question, showingAnswer, onShowAnswer, onCorrect, onIncorrect }) => (
+const DeckCounter = styled.Text`
+    font-size: 12px;
+    text-align: center;
+`
+
+export default ({ question, showingAnswer, countText, onShowAnswer, onCorrect, onIncorrect }) => (
   <DeckDetails>
+    <DeckCounter>{countText}</DeckCounter>
     <DeckTitle>{question.question}</DeckTitle>
     {showingAnswer && <DeckSubTitle>{question.answer}</DeckSubTitle>}
     <View>

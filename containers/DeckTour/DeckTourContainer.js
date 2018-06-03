@@ -3,14 +3,32 @@ import DeckTourComponent from './DeckTourComponent'
 
 class DeckTourContainer extends React.Component {
 
-  state = { index: 0, testing: false, showingAnswer: false, correct: 0 }
+  state = { 
+    index: 0, 
+    testing: false, 
+    showingAnswer: false, 
+    correct: 0,
+    lastQuestion: false 
+  }
 
   onStartTest = () => {
     this.setState({
       index: 0,
       testing: true,
       showingAnswer: false,
-      correct: 0
+      correct: 0,
+      lastQuestion: false
+    })
+  }
+
+  onClear = () => {
+    this.setState({
+      index: 0,
+      testing: false,
+      showingAnswer: false,
+      correct: 0,
+      lastQuestion: false,
+      testing: false
     })
   }
 
@@ -26,12 +44,11 @@ class DeckTourContainer extends React.Component {
   onCorrect = () => {
     this.setState(state => {
       const deck = this.props.deck
-      const lastQuestion = (state.index + 1) < deck.questions.length
       return {
         correct: state.correct + 1,
         index: state.index + 1,
         showingAnswer: false,
-        testing: lastQuestion
+        lastQuestion: (state.index + 1) >= deck.questions.length
       }
     })
   }
@@ -39,11 +56,10 @@ class DeckTourContainer extends React.Component {
   onIncorrect = () => {
     this.setState(state => {
       const deck = this.props.deck
-      const lastQuestion = (state.index + 1) < deck.questions.length
       return {
         index: state.index + 1,
         showingAnswer: false,
-        testing: lastQuestion
+        lastQuestion: (state.index + 1) >= deck.questions.length
       }
     })
   }
@@ -65,6 +81,7 @@ class DeckTourContainer extends React.Component {
       onCorrect={this.onCorrect}
       onIncorrect={this.onIncorrect}
       getScoreText={this.getScoreText}
+      onClear={this.onClear}
     />
   }
 }
