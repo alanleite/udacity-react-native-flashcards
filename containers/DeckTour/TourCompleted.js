@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 import { Button } from '../../components'
+import { registerNotification } from '../../common/helpers'
 
 const DeckDetails = styled.View`
     flex: 1
@@ -20,13 +21,23 @@ const ScoreTitle = styled.Text`
     font-size: 22px;
     color: ${props => props.theme.accent};
 `
-export default ({ getScoreText, onStartTest, onClear }) => (
-  <DeckDetails>
-    <DeckTitle>You finished the test.</DeckTitle>
-    <ScoreTitle>{getScoreText()}</ScoreTitle>
-    <View>
-      <Button title='Restart' onPress={onStartTest} />
-      <Button title='Back to Deck' onPress={onClear} />
-    </View>
-  </DeckDetails>
-)
+class TourCompleted extends React.Component {
+  componentDidMount() {
+    registerNotification()
+  }
+  render() {
+    const { getScoreText, onStartTest, onClear } = this.props
+    return (
+      <DeckDetails>
+        <DeckTitle>You finished the test.</DeckTitle>
+        <ScoreTitle>{getScoreText()}</ScoreTitle>
+        <View>
+          <Button title='Restart' onPress={onStartTest} />
+          <Button title='Back to Deck' onPress={onClear} />
+        </View>
+      </DeckDetails>
+    )
+  }
+}
+
+export default TourCompleted

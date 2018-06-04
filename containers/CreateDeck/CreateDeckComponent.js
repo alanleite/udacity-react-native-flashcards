@@ -14,10 +14,18 @@ const Title = styled.Text`
   text-align: center;
 `
 
-export default ({ text, onCreate, onChangeText }) => (
+const ErrorMessage = styled.Text`
+  margin-right: 30px;
+  margin-left: 30px;
+  text-align: center;
+  color: ${props => props.theme.accent};
+`
+
+export default ({ text, error, onCreate, onChangeText }) => (
   <AvoidContainer behavior='padding'>
     <Title>What will be the name of the Deck?</Title>
     <TextInput value={text} onChangeText={onChangeText} />
+    {error && <ErrorMessage>This field is required.</ErrorMessage>}
     <Button title='Create' onPress={onCreate} />
   </AvoidContainer>
 )

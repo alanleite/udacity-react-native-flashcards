@@ -1,13 +1,13 @@
 import React from 'react'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { withTheme } from 'styled-components'
-import DeckStack from '../DeckStack'
+import Decks from '../Decks'
 import CreateDeck from '../CreateDeck'
 
 // Alguma forma melhor de obter o theme context?
 const RootTab = ({ theme }) => {
   const tabs = {
-    Decks: DeckStack,
+    Decks: Decks,
     CreateDeck: CreateDeck
   }
 

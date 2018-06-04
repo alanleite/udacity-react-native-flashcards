@@ -4,12 +4,13 @@ import { withTheme } from 'styled-components'
 import Decks from '../Decks'
 import DeckTour from '../DeckTour'
 import CreateQuestion from '../CreateQuestion'
+import RootTab from '../RootTab'
 
 // Alguma forma melhor de obter o theme context?
-const RootTab = ({ theme }) => {
+const DeckStack = ({ theme }) => {
   const tabs = {
     Decks: {
-      screen: Decks
+      screen: RootTab
     },
     DeckTour: {
       screen: DeckTour
@@ -32,4 +33,4 @@ const RootTab = ({ theme }) => {
   return <Tab />
 }
 
-export default withTheme(RootTab)
+export default withTheme(DeckStack)
