@@ -10,7 +10,8 @@ class CreateQuestionContainer extends React.Component {
   onChangeText = (name, text) => this.setState({ [name]: text })
   
   onCreate = () => {
-    if(!this.state.question || this.state.question.length === 0
+    if(
+      !this.state.question || this.state.question.length === 0 ||
       !this.state.answer || this.state.answer.length === 0) {
       this.setState({ error: true })
       return;

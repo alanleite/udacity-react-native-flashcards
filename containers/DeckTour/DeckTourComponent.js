@@ -51,7 +51,7 @@ export default (props) => {
           { questions.length === 0 && `You have not yet created a test` }
         </DeckSubTitle>
         <View>
-          <Button title='Start my test' onPress={onStartTest} />
+          { questions.length > 1 && <Button title='Start my test' onPress={onStartTest} /> }
           <Button title='Create a question' onPress={onCreateQuestion} />
         </View>
       </DeckDetails>

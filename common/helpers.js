@@ -23,6 +23,11 @@ function createNotification () {
   }
 }
 
+export async function clearLocalNotification () {
+  await AsyncStorage.removeItem(NOTIFICATION_KEY)
+  await Notifications.cancelAllScheduledNotificationsAsync()
+}
+
 export async function registerNotification () {
   const data = await AsyncStorage.getItem(NOTIFICATION_KEY)
   const parsed = JSON.parse(data)

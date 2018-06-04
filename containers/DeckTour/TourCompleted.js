@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 import { Button } from '../../components'
-import { registerNotification } from '../../common/helpers'
+import { registerNotification, clearLocalNotification } from '../../common/helpers'
 
 const DeckDetails = styled.View`
     flex: 1
@@ -23,7 +23,8 @@ const ScoreTitle = styled.Text`
 `
 class TourCompleted extends React.Component {
   componentDidMount() {
-    registerNotification()
+    clearLocalNotification()
+      .then(registerNotification)
   }
   render() {
     const { getScoreText, onStartTest, onClear } = this.props

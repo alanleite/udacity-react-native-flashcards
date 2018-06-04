@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatusBar, Container } from '../../components'
-import DeckStack from '../DeckStack'
+import RootStack from '../RootStack'
 
 class Root extends React.Component {
   componentDidMount () {
@@ -10,7 +10,7 @@ class Root extends React.Component {
     return (
       <Container>
         <StatusBar />
-        <DeckStack />
+        <RootStack />
       </Container>
     )
   }
